@@ -3,26 +3,56 @@
   "x-version": "1.0.0",
   "name": "opentitan-otbn",
   "version": "0.1.0",
-  "description": "Big Number Accelerator for asymmetric cryptography (RSA, ECC) with 256-bit wide datapath, dedicated instruction memory and data memory, URND PRNG, memory scrambling, and lifecycle integration. TileLink-UL slave. Extracted from OpenTitan (lowRISC).",
+  "description": "IP imported from https://github.com/lowRISC/opentitan",
   "license": "Apache-2.0",
-  "maturity": "production",
-  "target": ["asic", "fpga"],
-  "design_type": ["digital"],
-  "created": "2026-02-19T06:12:02Z",
-  "updated": "2026-03-27T19:30:00Z",
-  "source": {"type": "git", "url": "https://github.com/lowRISC/opentitan", "commit": "304378684dfcf5be73bbd14faffa71790793d8c6", "ip_path": "hw/ip/otbn", "private": false, "rtl_path": "rtl"},
-  "maintainers": [{"name": "Vyges", "email": "team@vyges.com", "github": "vyges"}],
-  "interfaces": [
-    {"type": "bus", "direction": "slave", "protocol": "TL-UL", "port": "tl", "width": 32, "description": "TileLink-UL slave. 11 registers."}
+  "maturity": "draft",
+  "target": [
+    "asic",
+    "fpga"
   ],
-  "architecture": {"type": "peripheral", "features": ["256-bit wide datapath for big number arithmetic", "Dedicated instruction memory (IMEM) and data memory (DMEM)", "Custom ISA for cryptographic operations", "URND PRNG for side-channel countermeasures", "Memory scrambling (key/nonce from OTP)", "Lifecycle integration (escalation, RMA)", "Register file: FF or FPGA implementation (RegFile parameter)", "11 control/status registers", "Bus integrity alert"]},
-  "dependencies": [{"name": "opentitan-prim", "type": "library"}, {"name": "opentitan-tlul", "type": "bus"}],
-  "documentation": {"upstream": "https://opentitan.org/book/hw/ip/otbn/"},
-  "artifacts": {"total_rtl_lines": 14701},
-  "categories": {"primary": "security", "secondary": ["crypto"], "tags": ["otbn", "opentitan", "tl-ul", "crypto"]},
-  "trust": {"verification_level": "silicon_proven", "tapeout_count": 3, "fpga_validated": false, "maintained": true, "last_activity": "2026-03-27"},
-  "asic": {"flavor": "digital", "technology": ["sky130A"]},
-  "fpga": {"toolchain": ["Vivado", "Yosys"]},
-  "keywords": ["otbn", "opentitan", "crypto", "tl-ul"],
-  "meta": {"template": {"generator": "manual (gold-standard pass 2026-03-27)"}, "schema": {"version": "1.0.0"}}
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:28Z",
+  "updated": "2026-03-27T23:05:28Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "private": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [],
+  "parameters": [],
+  "architecture": {
+    "type": "peripheral",
+    "features": []
+  },
+  "categories": [
+    {
+      "main_category": "Miscellaneous",
+      "sub_category": "Custom Accelerators"
+    }
+  ],
+  "trust": {
+    "verification_level": "unknown",
+    "maintained": true
+  },
+  "_note": "AI enrichment failed. Manual population needed.",
+  "meta": {
+    "template": {
+      "generator": "upstream-sync-fallback",
+      "generated_at": "2026-03-27T23:05:28Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
 }
