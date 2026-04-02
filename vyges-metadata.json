@@ -14,7 +14,7 @@
     "digital"
   ],
   "created": "2026-03-27T23:11:06Z",
-  "updated": "2026-03-27T23:11:06Z",
+  "updated": "2026-04-02T03:11:53Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
@@ -299,5 +299,50 @@
     "schema": {
       "version": "1.0.0"
     }
-  }
+  },
+  "rtl_files": [
+    "rtl/otbn.sv",
+    "rtl/otbn_alu_base.sv",
+    "rtl/otbn_alu_bignum.sv",
+    "rtl/otbn_controller.sv",
+    "rtl/otbn_core.sv",
+    "rtl/otbn_decoder.sv",
+    "rtl/otbn_instruction_fetch.sv",
+    "rtl/otbn_loop_controller.sv",
+    "rtl/otbn_lsu.sv",
+    "rtl/otbn_mac_bignum.sv",
+    "rtl/otbn_mac_bignum_fsm.sv",
+    "rtl/otbn_mod_result_selector.sv",
+    "rtl/otbn_pkg.sv",
+    "rtl/otbn_predecode.sv",
+    "rtl/otbn_reg_pkg.sv",
+    "rtl/otbn_reg_top.sv",
+    "rtl/otbn_rf_base.sv",
+    "rtl/otbn_rf_base_ff.sv",
+    "rtl/otbn_rf_base_fpga.sv",
+    "rtl/otbn_rf_bignum.sv",
+    "rtl/otbn_rf_bignum_ff.sv",
+    "rtl/otbn_rf_bignum_fpga.sv",
+    "rtl/otbn_rnd.sv",
+    "rtl/otbn_scramble_ctrl.sv",
+    "rtl/otbn_stack.sv",
+    "rtl/otbn_start_stop_control.sv",
+    "rtl/otbn_vec_adder.sv",
+    "rtl/otbn_vec_multiplier.sv",
+    "rtl/otbn_vec_shifter.sv",
+    "rtl/otbn_vec_transposer.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
 }
