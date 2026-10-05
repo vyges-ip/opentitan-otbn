@@ -595,49 +595,26 @@ module otbn_alu_bignum
     .out_o(ispr_mai_res_s1_wdata_o)
   );
 
-  assign ispr_mai_ctrl_wr_o = ispr_bignum_predec_i.ispr_wr_en[IsprMaiCtrl];
-  // SEC_CM: DATA_REG_SW.SCA
-  prim_blanker #(.Width(32'd32)) u_ispr_mai_ctrl_wdata_blanker (
-    .in_i (ispr_base_wdata_i),
-    .en_i (ispr_mai_ctrl_wr_o),
-    .out_o(ispr_mai_ctrl_wdata_o)
-  );
+  // This does not require a blanker as the data is never secret.
+  assign ispr_mai_ctrl_wr_o    = ispr_bignum_predec_i.ispr_wr_en[IsprMaiCtrl];
+  assign ispr_mai_ctrl_wdata_o = ispr_base_wdata_i;
 
   ////////////////
   // KMAC Write //
   ////////////////
 
-  assign ispr_kmac_status_wr_o = ispr_bignum_predec_i.ispr_wr_en[IsprKmacStatus];
-  // SEC_CM: DATA_REG_SW.SCA
-  prim_blanker #(.Width(32'd32)) u_ispr_kmac_status_wdata_blanker (
-    .in_i (ispr_base_wdata_i),
-    .en_i (ispr_kmac_status_wr_o),
-    .out_o(ispr_kmac_status_wdata_o)
-  );
+  // The following 4 CSRs do not require a blanker as the data is never secret.
+  assign ispr_kmac_status_wr_o    = ispr_bignum_predec_i.ispr_wr_en[IsprKmacStatus];
+  assign ispr_kmac_status_wdata_o = ispr_base_wdata_i;
 
-  assign ispr_kmac_ctrl_wr_o = ispr_bignum_predec_i.ispr_wr_en[IsprKmacCtrl];
-  // SEC_CM: DATA_REG_SW.SCA
-  prim_blanker #(.Width(32'd32)) u_ispr_kmac_ctrl_wdata_blanker (
-    .in_i (ispr_base_wdata_i),
-    .en_i (ispr_kmac_ctrl_wr_o),
-    .out_o(ispr_kmac_ctrl_wdata_o)
-  );
+  assign ispr_kmac_ctrl_wr_o    = ispr_bignum_predec_i.ispr_wr_en[IsprKmacCtrl];
+  assign ispr_kmac_ctrl_wdata_o = ispr_base_wdata_i;
 
-  assign ispr_kmac_cfg_wr_o = ispr_bignum_predec_i.ispr_wr_en[IsprKmacCfg];
-  // SEC_CM: DATA_REG_SW.SCA
-  prim_blanker #(.Width(32'd32)) u_ispr_kmac_cfg_wdata_blanker (
-    .in_i (ispr_base_wdata_i),
-    .en_i (ispr_kmac_cfg_wr_o),
-    .out_o(ispr_kmac_cfg_wdata_o)
-  );
+  assign ispr_kmac_cfg_wr_o    = ispr_bignum_predec_i.ispr_wr_en[IsprKmacCfg];
+  assign ispr_kmac_cfg_wdata_o = ispr_base_wdata_i;
 
-  assign ispr_kmac_strb_wr_o = ispr_bignum_predec_i.ispr_wr_en[IsprKmacStrb];
-  // SEC_CM: DATA_REG_SW.SCA
-  prim_blanker #(.Width(32'd32)) u_ispr_kmac_strb_wdata_blanker (
-    .in_i (ispr_base_wdata_i),
-    .en_i (ispr_kmac_strb_wr_o),
-    .out_o(ispr_kmac_strb_wdata_o)
-  );
+  assign ispr_kmac_strb_wr_o    = ispr_bignum_predec_i.ispr_wr_en[IsprKmacStrb];
+  assign ispr_kmac_strb_wdata_o = ispr_base_wdata_i;
 
   assign ispr_kmac_data_s0_wr_o = ispr_bignum_predec_i.ispr_wr_en[IsprKmacDataS0];
   // SEC_CM: DATA_REG_SW.SCA
@@ -750,12 +727,12 @@ module otbn_alu_bignum
       {{(WLEN - (NFlagGroups * FlagsWidth)){1'b0}}, flags_flattened};
 
   // SEC_CM: KEY.SIDELOAD
-  assign ispr_rdata_no_intg_mux_in[IsprKeyS0LNoIntg] = sideload_key_shares_i[0][255:0];
+  assign ispr_rdata_no_intg_mux_in[IsprKeyS0LNoIntg] = sideload_key_shares_i[0][WLEN-1:0];
   assign ispr_rdata_no_intg_mux_in[IsprKeyS0HNoIntg] =
-      {{(WLEN - (SideloadKeyWidth - 256)){1'b0}}, sideload_key_shares_i[0][SideloadKeyWidth-1:256]};
-  assign ispr_rdata_no_intg_mux_in[IsprKeyS1LNoIntg] = sideload_key_shares_i[1][255:0];
+      sideload_key_shares_i[0][SideloadKeyWidth-1:WLEN];
+  assign ispr_rdata_no_intg_mux_in[IsprKeyS1LNoIntg] = sideload_key_shares_i[1][WLEN-1:0];
   assign ispr_rdata_no_intg_mux_in[IsprKeyS1HNoIntg] =
-      {{(WLEN - (SideloadKeyWidth - 256)){1'b0}}, sideload_key_shares_i[1][SideloadKeyWidth-1:256]};
+      sideload_key_shares_i[1][SideloadKeyWidth-1:WLEN];
   assign ispr_rdata_no_intg_mux_in[IsprInsnCntNoIntg] = {{(WLEN - 32){1'b0}}, insn_cnt_i};
 
   assign ispr_rdata_no_intg_mux_in[IsprKmacStatusNoIntg] =
